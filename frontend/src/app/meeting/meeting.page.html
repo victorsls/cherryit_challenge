@@ -1,0 +1,46 @@
+<ion-menu side="start" content-id="main-content">
+    <ion-header>
+        <ion-toolbar translucent>
+            <ion-title>Menu</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-list>
+            <ion-item>
+                <ion-icon name="log-out-outline" slot="start"></ion-icon>
+                <ion-label (click)="logout()">Sair</ion-label>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+<div class="ion-page" id="main-content">
+    <ion-header>
+        <ion-toolbar>
+            <ion-buttons slot="start">
+                <ion-menu-button></ion-menu-button>
+            </ion-buttons>
+            <ion-title>Reuniões</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-card *ngFor="let meeting of meetings">
+                        <ion-card-header>
+                            <ion-card-subtitle
+                                    class="ion-text-center">{{meeting.date | date: 'dd/MM/yyyy HH:MM'}}</ion-card-subtitle>
+                            <ion-card-title class="ion-text-center">
+                                <strong>{{meeting.title}}</strong>
+                            </ion-card-title>
+                        </ion-card-header>
+                        <ion-card-content>
+                            <ion-img id="image" src="{{ meeting.image }}"></ion-img>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-content>
+</div>

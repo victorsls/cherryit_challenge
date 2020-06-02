@@ -1,0 +1,26 @@
+<ion-content [fullscreen]="true">
+    <ion-grid id="container">
+        <ion-row>
+            <ion-col>
+                <form (ngSubmit)="login()">
+                    <ion-row class="ion-justify-content-center ion-padding-bottom">
+                        <ion-img id="logo" src="assets/logo.png"></ion-img>
+                    </ion-row>
+                    <ion-list lines="full" class="ion-padding-start ion-padding-end">
+                        <ion-item>
+                            <ion-label position="stacked">Usuário</ion-label>
+                            <ion-input required type="text" [(ngModel)]="form.username" name="username"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked">Senha</ion-label>
+                            <ion-input required type="password" [(ngModel)]="form.password" name="password"></ion-input>
+                        </ion-item>
+                    </ion-list>
+                    <ion-row class="ion-justify-content-center ion-padding-top">
+                        <ion-button type="submit" color="danger">Acessar</ion-button>
+                    </ion-row>
+                </form>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
