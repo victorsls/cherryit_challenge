@@ -40,7 +40,7 @@ export class AuthenticationService {
     login(username, password) {
         const headers = {headers: new HttpHeaders().set('Content-Type', 'application/json')};
         const body = {username, password};
-        this.http.post(`${environment.apiUrl}/login/`, body, headers).subscribe((response: any) => {
+        this.http.post(`${environment.apiUrl}/obtain-auth-token/`, body, headers).subscribe((response: any) => {
             this.authState.next(true);
             this.storage.setObject('token', response.token);
             this.router.navigate(['/meeting']);
