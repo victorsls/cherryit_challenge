@@ -1,0 +1,42 @@
+version: '3.6'
+
+services:
+  backend:
+    build:
+      context: backend
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend/:/app
+    ports:
+      - 8000:8000
+    environment:
+      - DEBUG=True
+      - SECRET_KEY=foo
+      - ALLOWED_HOSTS=localhost,127.0.0.1,backend
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/meetings
+    depends_on:
+      - db
+  frontend:
+    build:
+      context: frontend
+    volumes:
+      - ./frontend/:/app
+    ports:
+      - 4200:4200
+    depends_on:
+      - backend
+    networks:
+      backend:
+  db:
+    image: postgres:12.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=meetings
+
+volumes:
+  postgres_data:
+networks:
+  backend:
