@@ -20,6 +20,14 @@ export class AuthenticationService {
         });
     }
 
+    async presentToast(message, duration = 2000) {
+        const toast = await this.toastController.create({
+            message,
+            duration
+        });
+        toast.present();
+    }
+
     ifLoggedIn() {
         this.storage.getObject('token').then((response) => {
             if (response) {
@@ -32,12 +40,13 @@ export class AuthenticationService {
     login(username, password) {
         const headers = {headers: new HttpHeaders().set('Content-Type', 'application/json')};
         const body = {username, password};
-        this.http.post(`${environment.api_url}/login/`, body, headers).subscribe((response: any) => {
+        this.http.post(`${environment.apiUrl}/login/`, body, headers).subscribe((response: any) => {
             this.authState.next(true);
             this.storage.setObject('token', response.token);
             this.router.navigate(['/meeting']);
+            this.presentToast('Login Realizado com Sucesso');
         }, error => {
-            console.log(error);
+            this.presentToast('Usuário ou Senha invalidos');
         });
     }
 
