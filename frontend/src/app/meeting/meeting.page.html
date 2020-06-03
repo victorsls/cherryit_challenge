@@ -27,17 +27,20 @@
         <ion-grid>
             <ion-row>
                 <ion-col>
+                    <h5 class="ion-text-center" *ngIf="meetings.length === 0">
+                        Vocês não possui reuniões marcadas
+                    </h5>
                     <ion-card *ngFor="let meeting of meetings">
                         <ion-card-header>
                             <ion-card-subtitle
-                                    class="ion-text-center">{{meeting.date | date: 'dd/MM/yyyy HH:MM'}}</ion-card-subtitle>
+                                    class="ion-text-center">{{meeting.date | date: 'dd/MM/yyyy HH:mm'}}</ion-card-subtitle>
                             <ion-card-title class="ion-text-center">
                                 <strong>{{meeting.title}}</strong>
                             </ion-card-title>
                         </ion-card-header>
                         <ion-card-content>
                             <ion-img id="image" src="{{ meeting.image }}"></ion-img>
-                        </ion-card-content>
+                        </ion-card-content> 
                     </ion-card>
                 </ion-col>
             </ion-row>
