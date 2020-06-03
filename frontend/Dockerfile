@@ -4,7 +4,8 @@ WORKDIR /app
 
 COPY package.json . 
 COPY package-lock.json .
-RUN npm install -g @ionic/cli && npm install
+RUN npm install -g @ionic/cli 
+RUN npm install
 
 COPY . .
 
