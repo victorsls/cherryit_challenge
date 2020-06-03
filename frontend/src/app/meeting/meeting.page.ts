@@ -23,7 +23,7 @@ export class MeetingPage implements OnInit {
             const headers = {
                 headers: new HttpHeaders().set('Authorization', `Token ${token}`)
             };
-            this.http.get(`${environment.api_url}/meetings/`, headers).subscribe((response) => {
+            this.http.get(`${environment.apiUrl}/meetings/`, headers).subscribe((response) => {
                 this.meetings = response;
             });
         });
